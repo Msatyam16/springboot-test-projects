@@ -1,9 +1,12 @@
 package com.jpa.example;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import com.jpa.example.dao.UserRepo;
+import com.jpa.example.mdl.UserModel;
 
 @SpringBootApplication
 public class BootJpaExampleApplication {
@@ -92,7 +95,15 @@ public class BootJpaExampleApplication {
 //		bean.deleteById(154);
 //		System.out.println("Deleted");
 
-//----------------------------------------------------------------------//				
+//----------------------------------------------------------------------//	
+
+		// This is to find obj by custom methods
+
+		List<UserModel> findByName = bean.findByName("Ram");
+
+		findByName.forEach(e -> System.out.println(e));
+
+//----------------------------------------------------------------------//			
 
 	}
 }
