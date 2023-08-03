@@ -109,13 +109,13 @@ public class BootJpaExampleApplication {
 
 		System.out.println("________________________________________________");
 
-		List<UserModel> getAllUser = bean.getAllUser();
-		getAllUser.forEach(e -> System.out.println(e));
+//		List<UserModel> getAllUser = bean.getAllUser();
+//		getAllUser.forEach(e -> System.out.println(e));
 
 		System.out.println("________________________________________________");
 
-//		List<UserModel> getAllUSerByNameAndCity = bean.getAllUSerByNameAndCity("Ram", "Ayodhya");
-//		getAllUSerByNameAndCity.forEach(e -> System.out.println(e));
+		List<UserModel> getAllUSerByNameAndCity = bean.getAllUSerByNameAndCity("Ram", "Ayodhya");
+		getAllUSerByNameAndCity.forEach(e -> System.out.println(e));
 
 		System.out.println("________________________________________________");
 
