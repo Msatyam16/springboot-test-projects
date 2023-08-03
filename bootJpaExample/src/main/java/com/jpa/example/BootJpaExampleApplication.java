@@ -99,9 +99,30 @@ public class BootJpaExampleApplication {
 
 		// This is to find obj by custom methods
 
-		List<UserModel> findByName = bean.findByName("Ram");
-
+		List<UserModel> findByName = bean.findByName("Sita");
 		findByName.forEach(e -> System.out.println(e));
+
+		System.out.println("________________________________________________");
+
+		List<UserModel> findByNameAndCity = bean.findByNameAndCity("Ram", "Ayodhya");
+		findByNameAndCity.forEach(e -> System.out.println(e));
+
+		System.out.println("________________________________________________");
+
+		List<UserModel> getAllUser = bean.getAllUser();
+		getAllUser.forEach(e -> System.out.println(e));
+
+		System.out.println("________________________________________________");
+
+//		List<UserModel> getAllUSerByNameAndCity = bean.getAllUSerByNameAndCity("Ram", "Ayodhya");
+//		getAllUSerByNameAndCity.forEach(e -> System.out.println(e));
+
+		System.out.println("________________________________________________");
+
+		List<UserModel> getUsers = bean.getUsers();
+		getUsers.forEach(e -> System.out.println(e));
+
+		System.out.println("________________________________________________");
 
 //----------------------------------------------------------------------//			
 

@@ -1,9 +1,11 @@
 package com.jpa.example.mdl;
 
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 public class UserModel {
