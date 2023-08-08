@@ -1,8 +1,11 @@
 package com.rest.example.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +28,13 @@ public class RestTestController {
 	private BookService bookService;
 
 	/*
-	 * In this example we learn about- 
-	 * The use of @Controller/@RequestMapping/@ResponseBody 
-	 * The use of @GetMapping or @RestController 
-	 * (This annotations will change response into json o/p automatically)
+	 * In this example we learn about- The use
+	 * of @Controller/@RequestMapping/@ResponseBody The use of @GetMapping
+	 * or @RestController (This annotations will change response into json o/p
+	 * automatically)
 	 * 
 	 */
-	
+
 //--------------------------------------------------------------------------------//
 //	@RequestMapping(value = "/restTest", method = RequestMethod.GET)
 //	@ResponseBody
@@ -47,48 +50,79 @@ public class RestTestController {
 		return bookmdl;
 	}
 //--------------------------------------------------------------------------------//
-	
+
 	/*
-	 * These 2 examples are showing that how to get data of book with and without parameters
+	 * These 2 examples are showing that how to get data of book with and without
+	 * parameters
 	 */
-	
+
 	@GetMapping("/book")
-	public List<BookMdl> getAllBooks() {
-		return bookService.getAllBooks();
+	public ResponseEntity<List<BookMdl>> getAllBooks() {
+		List<BookMdl> book = bookService.getAllBooks();
+		if (book.size() <= 0) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return ResponseEntity.of(Optional.of(book));
 	}
 
 	@GetMapping("/book/{id}")
-	public BookMdl getSingleBook(@PathVariable("id") int id) {
-		return bookService.getSingleBook(id);
+	public ResponseEntity<BookMdl> getSingleBook(@PathVariable("id") int id) {
+		BookMdl book = bookService.getSingleBook(id);
+		if (book == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return ResponseEntity.of(Optional.of(book));
 	}
-	
+
 	/*
 	 * @PostMapping is used to add the data
 	 */
-	
+
 	@PostMapping("/book")
-	public BookMdl addBook(@RequestBody BookMdl bookMdl) {
-		BookMdl addBook = this.bookService.addBook(bookMdl);
-		return addBook;
+	public ResponseEntity<BookMdl> addBook(@RequestBody BookMdl bookMdl) {
+		BookMdl addBook = null;
+		try {
+			addBook = this.bookService.addBook(bookMdl);
+			return ResponseEntity.of(Optional.of(addBook));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
 	}
-	
+
 	/*
 	 * @DeleteMapping is used to delete the data
 	 */
-	
+
 	@DeleteMapping("/book/{id}")
-	public void deleteBook(@PathVariable("id") int id) {
-		this.bookService.deleteBook(id);
+	public ResponseEntity<Void> deleteBook(@PathVariable("id") int id) {
+		try {
+			this.bookService.deleteBook(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
 	}
-	
+
 	/*
 	 * @PutMapping is used to update the data
 	 */
-	
+
 	@PutMapping("/book/{id}")
-	public BookMdl updateBook(@RequestBody BookMdl bookMdl, @PathVariable("id") int id) {
-		this.bookService.updateBook(bookMdl, id);
-		return bookMdl;
+	public ResponseEntity<BookMdl> updateBook(@RequestBody BookMdl bookMdl, @PathVariable("id") int id) {
+		try {
+			this.bookService.updateBook(bookMdl, id);
+			return ResponseEntity.of(Optional.of(bookMdl));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
 	}
 
 }

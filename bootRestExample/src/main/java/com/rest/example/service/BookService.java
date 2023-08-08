@@ -28,7 +28,13 @@ public class BookService {
 	}
 
 	public BookMdl getSingleBook(int id) {
-		BookMdl bookMdl = bookLst.stream().filter(e -> e.getBookId() == id).findFirst().get();
+		BookMdl bookMdl = null;
+		try {
+			bookMdl = bookLst.stream().filter(e -> e.getBookId() == id).findFirst().get();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		return bookMdl;
 	}
 
