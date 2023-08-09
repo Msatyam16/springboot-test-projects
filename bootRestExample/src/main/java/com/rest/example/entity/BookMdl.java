@@ -1,9 +1,11 @@
 package com.rest.example.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,14 +16,16 @@ public class BookMdl {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookId;
 	private String bookName;
-	private String bookAuther;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Author bookAuther;
 
 	public BookMdl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BookMdl(int bookId, String bookName, String bookAuther) {
+	public BookMdl(int bookId, String bookName, Author bookAuther) {
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
@@ -44,11 +48,11 @@ public class BookMdl {
 		this.bookName = bookName;
 	}
 
-	public String getBookAuther() {
+	public Author getBookAuther() {
 		return bookAuther;
 	}
 
-	public void setBookAuther(String bookAuther) {
+	public void setBookAuther(Author bookAuther) {
 		this.bookAuther = bookAuther;
 	}
 

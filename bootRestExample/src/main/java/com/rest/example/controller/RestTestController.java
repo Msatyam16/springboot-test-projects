@@ -44,7 +44,7 @@ public class RestTestController {
 		BookMdl bookmdl = new BookMdl();
 		bookmdl.setBookId(11);
 		bookmdl.setBookName("Java book");
-		bookmdl.setBookAuther("James");
+//		bookmdl.setBookAuther("James"); 
 
 //		return "This is the rest example...";
 		return bookmdl;
@@ -122,7 +122,7 @@ public class RestTestController {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
 
 }
