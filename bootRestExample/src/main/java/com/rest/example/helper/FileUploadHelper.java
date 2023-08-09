@@ -12,11 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadHelper {
 
 	// For static path, working fine...
-	
+
 //	private final String FILE_DIR = "D:\\satyam.mishra03\\OneDrive - Infosys Limited\\Documents\\springTestFolder\\springbootTestProjects\\bootDemoProject\\springboot-test-projects\\bootRestExample\\src\\main\\resources\\static\\image";
 
 	// For dynamic path
-	
+
 //	private final String FILE_DIR = new ClassPathResource("static/image/").getFile().getAbsolutePath().toString();
 	public final String FILE_DIR = Paths.get("src/main/resources/static/image").toAbsolutePath().toString();
 
