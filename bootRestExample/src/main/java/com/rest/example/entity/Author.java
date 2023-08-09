@@ -1,9 +1,13 @@
 package com.rest.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,16 +20,21 @@ public class Author {
 	private String firstName;
 	private String lastName;
 
+	@OneToOne(mappedBy = "bookAuther")
+	@JsonBackReference
+	private BookMdl book;
+
 	public Author() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int authId, String firstName, String lastName) {
+	public Author(int authId, String firstName, String lastName, BookMdl book) {
 		super();
 		this.authId = authId;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.book = book;
 	}
 
 	public int getAuthId() {
@@ -52,9 +61,18 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	public BookMdl getBook() {
+		return book;
+	}
+
+	public void setBook(BookMdl book) {
+		this.book = book;
+	}
+
 	@Override
 	public String toString() {
-		return "Author [authId=" + authId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Author [authId=" + authId + ", firstName=" + firstName + ", lastName=" + lastName + ", book=" + book
+				+ "]";
 	}
 
 }
