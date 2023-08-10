@@ -6,10 +6,21 @@
   </head>
 <body>
 	
-	<footer id="servicePage" th:replace="footer::fragment1">
+	<!-- This is when you don't want to sent any dynamic data -->
+	
+	<!-- <footer id="servicePage" th:replace="footer::fragment1"> -->
 	<!-- <footer id="servicePage" th:include="footer::fragment1"> -->
 	<!-- <footer id="servicePage" th:insert="footer::fragment1"> -->
 	
+	
+	<!-- This is when you want to sent any dynamic data -->
+	
+	<footer id="servicePage" th:replace="footer::fragment1(${title}, ${subtitle})">
+	
+		<!-- This line will not be print because here service class footer is overriding by footer class footer -->
+		<h1>This is service page...</h1>
+		
+		
 	</footer>
 	
 </body>

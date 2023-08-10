@@ -27,6 +27,8 @@ public class MainController {
 		return "about";
 	}
 
+//--------------------------------------------------------------------------------------//	
+
 	/* This controller is for that how to iterate list */
 
 	@GetMapping("/iterate")
@@ -35,6 +37,8 @@ public class MainController {
 		m.addAttribute("names", namesLst);
 		return "iterate";
 	}
+
+//--------------------------------------------------------------------------------------//	
 
 	/*
 	 * This controller is for types of conditions ((condition) ? true : false /
@@ -53,14 +57,22 @@ public class MainController {
 		return "conditions";
 	}
 
+//--------------------------------------------------------------------------------------//
+
 	/*
 	 * This controller is for types of fragments (th:fragment / th:replace /
 	 * th:include / th:insert)
 	 */
 
-	@GetMapping("/fragment")
+	@GetMapping("/service")
 	public String fragmentService(Model m) {
+
+		// These lines of code work only when you want to sent dynamic data to view
+		m.addAttribute("title", "This title is from controller page --> Satyam");
+		m.addAttribute("subtitle", "This date is from controller page --> " + new Date().toLocaleString());
+
 		return "service";
 	}
 
+//--------------------------------------------------------------------------------------//	
 }

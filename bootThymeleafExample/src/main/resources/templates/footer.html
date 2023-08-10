@@ -6,9 +6,12 @@
 </head>
 <body>
 
-	<footer id="footerPage" th:fragment="fragment1">
+	<footer id="footerPage" th:fragment="fragment1(title, subtitle)">
 
 		<div class="container">
+
+			<h1 th:text="${title}"></h1>
+			<h1 th:text="${subtitle}"></h1>
 
 			<h1>This is my footer tag...</h1>
 
