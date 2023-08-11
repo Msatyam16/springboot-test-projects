@@ -74,5 +74,22 @@ public class MainController {
 		return "service";
 	}
 
+//--------------------------------------------------------------------------------------//
+
+	/*
+	 * This controller is to call the base templete with other templates.
+	 */
+
+	@GetMapping("/aboutnew")
+	public String aboutnew() {
+		return "aboutnew";
+	}
+
+	@GetMapping("/contactnew")
+	public String contactnew() {
+		return "contactnew";
+	}
+
 //--------------------------------------------------------------------------------------//	
+
 }
