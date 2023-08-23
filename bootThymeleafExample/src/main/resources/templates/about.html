@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>About page</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <h1>This is the thymeleaf example html page...</h1>
+    
+    <h1 th:text="${name}"></h1>
+    <h1 th:text="${currentDate}"></h1>
+    
+    <h1>My name is <span th:text="${name}"></span> </h1>
+    <h1>Current date/time is <span th:text="${currentDate}"></span> </h1>
+    
+    <h1>My name is <span th:text="${#strings.toUpperCase(name)}"></span> </h1>
+    
+    <div th:with="a=5, b=6, n=${name}">
+    	<p>a = <span th:text="${a}"></span>
+    	<p><span th:text="'value of b is '+ ${b} "></span>
+    	<p><span th:text="'value of a and b is '+ ${a+b} "></span>
+    	<p>name = <span th:text="${name}"></span>
+    </div>
+    
+  </body>
+</html>

@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: khaki;
+}
+
+section {
+	color: white;
+	background-color: maroon;
+}
+
+.contactstyle {
+	color: white;
+	background-color: green;
+}

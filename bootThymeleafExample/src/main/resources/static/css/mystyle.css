@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+body {
+	background-color: #e2e2e2;
+}
+
+.container{
+	background-color: white;
+	padding: 140px;
+	font-family: 'Roboto';
+}
+
+.imageCls{
+	border-radius: 50%;
+}

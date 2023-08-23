@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Conditions Page</title>
+  </head>
+<body>
+	
+	<h1>
+		<span th:style="${flag} ? 'font-weight:bold; color: green' : 'font-weight:bold; color: red' " th:text="${flag} ? 'flag = true' : 'flag = false'"></span>
+	</h1>
+	
+	<hr>
+	
+	<h1 th:if="${gender}=='M'">Male</h1>
+	<h1 th:unless="${gender}=='M'">Female</h1>
+	
+	<hr>
+	
+	<div th:switch="${#lists.size(names)}">
+		<h1 th:case="'0'">No data found</h1>
+		<h1 th:case="'1'">List contains only 1 data.</h1>
+		<h1 th:case="*">List contains more elements...</h1>
+	</div>
+	
+</body>
+</html>
