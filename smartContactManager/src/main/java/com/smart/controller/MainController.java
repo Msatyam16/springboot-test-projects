@@ -16,7 +16,7 @@ public class MainController {
 	private UserRepo userRepo;
 
 	@GetMapping("/test")
-	@ResponseBody
+//	@ResponseBody
 	public String test() {
 
 		User user = new User();
