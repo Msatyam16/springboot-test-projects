@@ -1,8 +1,12 @@
 package com.smart.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smart.dao.UserRepo;
@@ -15,22 +19,18 @@ public class MainController {
 	@Autowired
 	private UserRepo userRepo;
 
-	@GetMapping("/test")
-	@ResponseBody
-	public String test() {
-
-		User user = new User();
-		user.setName("Ram ji");
-		user.setEmail("ramji@ayodhya.com");
-
-		Contact contact = new Contact();
-//		contact.setName("sita ji");
-//		contact.setEmail("sitaji@ayodhya.com");
-
-		user.getContact().add(contact);
-
-		this.userRepo.save(user);
-
-		return "test";
+	@RequestMapping("/home")
+//	@ResponseBody
+	public String home(Model model) {
+		
+		model.addAttribute("title", "Home - smart contact manager");
+		return "home";
+	}
+	
+	@RequestMapping("/about")
+	public String about(Model model) {
+		
+		model.addAttribute("title", "Home - smart contact manager");
+		return "about";
 	}
 }
