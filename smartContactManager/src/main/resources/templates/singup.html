@@ -13,31 +13,40 @@
 				<div class="col-md-8 offset-md-2">
 					<div class="my-card mt-2">
 					
+						<div class="alert alert-success" role="alert">
+						  This is a success alert—check it out!
+						</div>
+					
 						<div class="container text-center">
 							<img style="width: 7%" alt="Registration image fetching..." th:src="@{/image/singup_logo.png}">
 						</div>
 						
 						<h1 style="font-size: 200%" class="text-center font-weight-bold">Register Here</h1>
 						
-						<form th:action="@{/do-register}", method="post">
+						<form th:action="@{/do_register}" method="post" th:object="${user}">
 							<div class="form-group">
 							    <label for="name_field">Name</label>
-							    <input type="text" class="form-control" id="name_field" placeholder="Enter name here..." required>
+							    <input name="name" th:value="${user.name}" type="text" class="form-control" id="name_field" placeholder="Enter name here..." required>
 							</div>
 							
 							<div class="form-group">
 							    <label for="email_field">Email address</label>
-							    <input type="email" class="form-control" id="email_field" aria-describedby="emailHelp" placeholder="Enter email here..." required>
+							    <input name="email" th:value="${user.email}" type="email" class="form-control" id="email_field" aria-describedby="emailHelp" placeholder="Enter email here..." required>
 							 </div>
 							
 							<div class="form-group">
 							    <label for="password_field">Password</label>
-							    <input type="password" class="form-control" id="password_field" placeholder="Enter password here..." required>
+							    <input name="password" th:value="${user.password}" type="password" class="form-control" id="password_field" placeholder="Enter password here..." required>
 							</div>
 							
 							<div class="form-group">
-							    <label for="exampleInputEmail1">Something about yourself</label>
-							    <textarea placeholder="Enter about yourself..." rows="5" class="form-control"></textarea>
+							    <label for="about_field">Something about yourself</label>
+							    <textarea name="about" th:value="${user.about}" placeholder="Enter about yourself..." rows="5" class="form-control"></textarea>
+							</div>
+							
+							<div class="form-check">
+							   <input name="aggrement" type="checkbox" class="form-check-input" id="aggrement">
+							   <label class="form-check-label" for="aggrement">Accept terms and conditions</label>
 							</div>
 							
 							<div class="container text-center">
