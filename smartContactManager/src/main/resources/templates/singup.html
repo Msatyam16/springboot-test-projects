@@ -13,8 +13,8 @@
 				<div class="col-md-8 offset-md-2">
 					<div class="my-card mt-2">
 					
-						<div class="alert alert-success" role="alert">
-						  This is a success alert—check it out!
+						<div th:if="${session.message}" class="alert alert-success" role="alert">
+						 
 						</div>
 					
 						<div class="container text-center">

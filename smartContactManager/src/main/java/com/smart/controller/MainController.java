@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.smart.dao.UserRepo;
 import com.smart.entity.User;
+import com.smart.helper.Message;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -43,14 +45,28 @@ public class MainController {
 			@RequestParam(value = "aggrement", defaultValue = "false") boolean aggrement, Model model,
 			HttpSession session) {
 
-		user.setRole("user");
-		user.setEnabled("true");
+		try {
 
-		model.addAttribute("user", user);
+			if (!aggrement) {
+				System.out.println("You have not checked terms and conditions !! ");
+				throw new Exception("You have not checked terms and conditions !! ");
+			}
 
-		System.out.println(user);
-		System.out.println("aggrement " + aggrement);
+			user.setRole("user");
+			user.setEnabled("true");
 
-		return "singup";
+			model.addAttribute("user", new User());
+			
+			session.setAttribute("message", new Message("Data inserted successfully !! ", "alert-success"));
+			return "singup";
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			model.addAttribute("user", user);
+			session.setAttribute("message", new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
+			return "singup";
+		}
+
 	}
 }
