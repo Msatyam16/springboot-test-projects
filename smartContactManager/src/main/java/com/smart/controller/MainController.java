@@ -42,8 +42,9 @@ public class MainController {
 
 	@PostMapping("/do_register")
 	public String doRegister(@ModelAttribute("user") User user,
-			@RequestParam(value = "aggrement", defaultValue = "false") boolean aggrement, Model model,
-			HttpSession session) {
+			@RequestParam(value = "aggrement", defaultValue = "false") boolean aggrement, Model model
+//			, HttpSession session
+	) {
 
 		try {
 
@@ -56,15 +57,22 @@ public class MainController {
 			user.setEnabled("true");
 
 			model.addAttribute("user", new User());
-			
-			session.setAttribute("message", new Message("Data inserted successfully !! ", "alert-success"));
+
+			/* session is not working, so set in model */
+			model.addAttribute("message", new Message("Successfully Registered!! ", "alert-success"));
+//			session.setAttribute("message", new Message("Data inserted successfully !! ", "alert-success"));
+
 			return "singup";
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
+
 			model.addAttribute("user", user);
-			session.setAttribute("message", new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
+
+			/* session is not working, so set in model */
+			model.addAttribute("message", new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
+//			session.setAttribute("message", new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
+
 			return "singup";
 		}
 

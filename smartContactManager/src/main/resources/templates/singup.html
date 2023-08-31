@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	th:replace="base::layout(~{::section})">
 <head>
 <meta charset="utf-8">
@@ -13,9 +13,17 @@
 				<div class="col-md-8 offset-md-2">
 					<div class="my-card mt-2">
 					
-						<div th:if="${session.message}" class="alert alert-success" role="alert">
-						 
-						</div>
+						<!-- session is not working that's why -->
+					
+						<!-- <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+						 	<p th:text="${session.message.content}"></p>
+						 	
+						 	<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div> -->
+						
+						<div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
+						   <p class="text-center" th:text="${message.content}" ></p>
+						 </div>
 					
 						<div class="container text-center">
 							<img style="width: 7%" alt="Registration image fetching..." th:src="@{/image/singup_logo.png}">
