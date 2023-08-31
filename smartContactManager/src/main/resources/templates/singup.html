@@ -31,10 +31,13 @@
 						
 						<h1 style="font-size: 200%" class="text-center font-weight-bold">Register Here</h1>
 						
-						<form th:action="@{/do_register}" method="post" th:object="${user}">
+						<form novalidate th:action="@{/do_register}" method="post" th:object="${user}">
 							<div class="form-group">
 							    <label for="name_field">Name</label>
-							    <input name="name" th:value="${user.name}" type="text" class="form-control" id="name_field" placeholder="Enter name here..." required>
+							    <input name="name" th:value="${user.name}" type="text" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" id="name_field" placeholder="Enter name here...">
+							    <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+						        	
+						    	</div>
 							</div>
 							
 							<div class="form-group">
@@ -49,7 +52,7 @@
 							
 							<div class="form-group">
 							    <label for="about_field">Something about yourself</label>
-							    <textarea name="about" th:value="${user.about}" placeholder="Enter about yourself..." rows="5" class="form-control"></textarea>
+							    <textarea name="about" th:text="${user.about}" placeholder="Enter about yourself..." rows="5" class="form-control"></textarea>
 							</div>
 							
 							<div class="form-check">
