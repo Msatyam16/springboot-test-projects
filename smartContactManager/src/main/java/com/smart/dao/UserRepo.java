@@ -8,6 +8,6 @@ import com.smart.entity.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
 
-	@Query("select * from user u where u.email = :email")
+	@Query(value = "select * from user u where u.email = :email", nativeQuery = true)
 	public User getUserByUserName(@Param("email") String email);
 }
