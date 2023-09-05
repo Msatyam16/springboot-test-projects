@@ -1,6 +1,7 @@
 package com.smart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,9 @@ import jakarta.validation.Valid;
 
 @Controller
 public class MainController {
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	private UserRepo userRepo;
@@ -59,10 +63,13 @@ public class MainController {
 				return "singup";
 			}
 
-			user.setRole("user");
+			// It's compulsary to set role as "ROLE_?", otherwise error
+			user.setRole("ROLE_USER");
 			user.setEnabled("true");
 			user.setImageUrl("default.png");
-			
+			// Using this line we are encoding the password
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
 			userRepo.save(user);
 
 			model.addAttribute("user", new User());
