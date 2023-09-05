@@ -24,9 +24,7 @@ public class MainController {
 	private UserRepo userRepo;
 
 	@RequestMapping("/")
-//	@ResponseBody
 	public String home(Model model) {
-
 		model.addAttribute("title", "Home - smart contact manager");
 		return "home";
 	}
@@ -93,4 +91,11 @@ public class MainController {
 		}
 
 	}
+
+	@RequestMapping("/signin")
+	public String signin(Model model) {
+		model.addAttribute("title", "Signin - smart contact manager");
+		return "signin";
+	}
+
 }
