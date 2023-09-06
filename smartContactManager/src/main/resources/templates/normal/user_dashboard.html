@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
 <head>
-<meta charset="ISO-8859-1">
-<title>User dashboard</title>
+<meta charset="utf-8">
+<title>User Page</title>
 </head>
 <body>
-	<h1>This is user dashboard page.</h1>
+
+	<section>
+		<h1>This is about new user page with logout button</h1>
+		<h2 th:text="${user.name}"></h2>
+		<h2 th:text="${user.email}"></h2>
+	</section>
+
 </body>
 </html>
