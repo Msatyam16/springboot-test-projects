@@ -49,6 +49,9 @@ public class MyConfig {
 					.requestMatchers("/user/**").hasRole("USER")
 					.requestMatchers("/**").permitAll()
 					.and().formLogin().loginPage("/signin")
+									  .loginProcessingUrl("/signin")
+									  .defaultSuccessUrl("/user/index")
+//									  .failureUrl("/login-fail")
 					.and().csrf().disable();
 		
 		http.authenticationProvider(authenticationProvider());

@@ -32,6 +32,7 @@
 						<h1 style="font-size: 200%" class="text-center font-weight-bold">Register Here</h1>
 						
 						<form th:action="@{/do_register}" method="post" th:object="${user}">
+							
 							<div class="form-group">
 							    <label for="name_field">Name</label>
 							    <input name="name" th:value="${user.name}" type="text" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" id="name_field" placeholder="Enter name here...">
@@ -59,6 +60,7 @@
 							<div class="form-check">
 							   <input name="aggrement" type="checkbox" class="form-check-input" id="aggrement">
 							   <label class="form-check-label" for="aggrement">Accept terms and conditions</label>
+							   <a th:href="@{/signin}"><label class="form-check-label float-right">Already signup ? Login now</label></a>
 							</div>
 							
 							<div class="container text-center">
